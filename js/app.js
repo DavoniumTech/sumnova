@@ -44,14 +44,16 @@ import {
 
 
 
+
 import {
+
+    initializeUI,
 
     hideLoading,
 
     showToast
 
 } from "./ui.js";
-
 
 
 
@@ -92,6 +94,9 @@ export async function initializeApp() {
 
 
         initializeRouter();
+
+
+        initializeUI();
 
 
 
@@ -325,8 +330,8 @@ function handleRouteChange() {
 
 
     const route =
+    window.location.hash;
 
-        window.location.pathname;
 
 
 
