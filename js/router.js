@@ -45,7 +45,7 @@ import {
 const routes = {
 
 
-    "#/":
+    "#/ ":
 
     {
 
@@ -89,18 +89,12 @@ const routes = {
     },
 
 
-    
-"#/history",
-
-{
+    "#/history": {
     name: "history",
     protected: true
 },
 
-
-"#/settings",
-
-{
+"#/settings": {
     name: "settings",
     protected: true
 }
@@ -426,7 +420,17 @@ function renderPage(route) {
 
 export function initializeRouter() {
 
-window.addEventListener("hashchange", () => {
+    window.addEventListener("hashchange", () => {
+
+        currentRoute = window.location.hash || "#/";
+
+        renderPage(currentRoute);
+
+        notifyRouteListeners();
+
+        window.dispatchEvent(new Event("routechange"));
+
+    });
 
     currentRoute = window.location.hash || "#/";
 
@@ -434,27 +438,14 @@ window.addEventListener("hashchange", () => {
 
     notifyRouteListeners();
 
-    window.dispatchEvent(
-        new Event("routechange")
-    );
-
-});
-    
-
-   }
-
-
-
-    currentRoute = window.location.hash || "#/";
-
-renderPage(currentRoute);
-
-notifyRouteListeners();
-
-
 }
 
+    
 
+    
+
+        
+    
 
 
 
