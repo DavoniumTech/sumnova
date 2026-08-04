@@ -56,7 +56,7 @@ const routes = {
     },
 
 
-    "/login":
+    "#/login":
 
     {
 
@@ -67,7 +67,7 @@ const routes = {
     },
 
 
-    "/register":
+    "#/register":
 
     {
 
@@ -78,7 +78,7 @@ const routes = {
     },
 
 
-    "/dashboard":
+    "#/dashboard":
 
     {
 
@@ -89,7 +89,7 @@ const routes = {
     },
 
 
-    "/profile":
+    "#/profile":
 
     {
 
@@ -219,31 +219,7 @@ export function navigate(
 
 
 
-    window.history.pushState(
-
-        {},
-
-        "",
-
-        path
-
-    );
-
-
-
-    currentRoute = path;
-
-notifyRouteListeners();
-
-
-
-    window.dispatchEvent(
-
-        new Event(
-            "routechange"
-        )
-
-    );
+    window.location.hash = path;
 
 
 }
@@ -358,31 +334,19 @@ function notifyRouteListeners() {
 export function initializeRouter() {
 
 
-    window.addEventListener(
+    window.addEventListener("hashchange", () => {
 
-        "popstate",
+    currentRoute = window.location.hash || "#/";
 
-        () => {
+    notifyRouteListeners();
 
+    window.dispatchEvent(new Event("routechange"));
 
-            currentRoute =
-
-                window.location.pathname;
-
-
-
-            notifyRouteListeners();
-
-
-        }
-
-    );
+});
 
 
 
-    currentRoute =
-
-        window.location.pathname;
+    currentRoute = window.location.hash || "#/";
 
 
 
