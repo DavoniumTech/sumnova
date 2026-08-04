@@ -107,7 +107,8 @@ export async function initializeApp() {
 
 
 
-        hideLoading();
+        console.log("hideLoading called");
+hideLoading();
 
 
 
