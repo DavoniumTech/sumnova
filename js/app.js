@@ -97,6 +97,8 @@ export async function initializeApp() {
 
         initializeUI();
 
+        renderPage(window.location.hash || "#/");
+
 
 
         setupAuthListener();
@@ -356,32 +358,9 @@ Route Change Handler
 
 function handleRouteChange() {
 
+    const route = window.location.hash || "#/";
 
-    const route =
-        window.location.hash;
-
-
-
-    window.dispatchEvent(
-
-        new CustomEvent(
-
-            "pagerender",
-
-            {
-
-                detail: {
-
-                    route
-
-                }
-
-            }
-
-        )
-
-    );
-
+    renderPage(route);
 
 }
 
@@ -479,5 +458,35 @@ if (
 
     initializeApp();
 
+
+}
+
+
+function renderPage(route) {
+
+    document.getElementById("landing-page").hidden = true;
+    document.getElementById("dashboard-page").hidden = true;
+    document.getElementById("history-page").hidden = true;
+    document.getElementById("settings-page").hidden = true;
+
+    switch (route) {
+
+        case "#/dashboard":
+            document.getElementById("dashboard-page").hidden = false;
+            break;
+
+        case "#/history":
+            document.getElementById("history-page").hidden = false;
+            break;
+
+        case "#/settings":
+            document.getElementById("settings-page").hidden = false;
+            break;
+
+        default:
+            document.getElementById("landing-page").hidden = false;
+            break;
+
+    }
 
 }
