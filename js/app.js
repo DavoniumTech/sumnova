@@ -116,26 +116,7 @@ export async function initializeApp() {
 
 
 
-    } catch (error) {
-
-
-        hideLoading();
-
-
-
-        showToast(
-
-            "Application failed to start.",
-
-            "error"
-
-        );
-
-
-    }
-
-
-}
+    } 
 
 
 
