@@ -123,10 +123,8 @@ export async function initializeApp() {
     } catch (error) {
 
 
-        console.error(
-            "Application startup failed:",
-            error
-        );
+       console.error(error);
+console.error(error.stack);
 
 
 
