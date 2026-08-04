@@ -1,5 +1,102 @@
 /*
-    SumNova
+    SumNova/*
+=========================================================
+Initialize UI
+=========================================================
+*/
+
+export function initializeUI() {
+
+    initializeNavigation();
+
+    initializeLandingPage();
+
+    initializeTheme();
+
+}
+
+/*
+=========================================================
+Navigation
+=========================================================
+*/
+
+function initializeNavigation() {
+
+    const menuButton = select("#menu-toggle");
+    const navigation = select("#navigation-links");
+
+    if (!menuButton || !navigation) {
+        return;
+    }
+
+    menuButton.addEventListener("click", () => {
+
+        const open = navigation.classList.toggle("open");
+
+        menuButton.setAttribute(
+            "aria-expanded",
+            String(open)
+        );
+
+    });
+
+}
+
+/*
+=========================================================
+Landing Page
+=========================================================
+*/
+
+function initializeLandingPage() {
+
+    const startButton = select("#start-button");
+    const loginButton = select("#login-button");
+
+    if (startButton) {
+
+        startButton.addEventListener("click", () => {
+
+            window.location.hash = "#/dashboard";
+
+        });
+
+    }
+
+    if (loginButton) {
+
+        loginButton.addEventListener("click", () => {
+
+            window.location.hash = "#/login";
+
+        });
+
+    }
+
+}
+
+/*
+=========================================================
+Theme
+=========================================================
+*/
+
+function initializeTheme() {
+
+    const themeButton = select("#theme-switch");
+
+    if (!themeButton) {
+        return;
+    }
+
+    themeButton.addEventListener("click", () => {
+
+        document.body.classList.toggle("dark");
+
+    });
+
+        }
     Davonium Technologies
 
     User Interface Module
@@ -37,8 +134,8 @@ import {
 export function showLoading() {
 
 
-    const loader =
-        select("#loading-screen");
+    
+        const loader = select("#app-loader");
 
 
 
@@ -590,4 +687,105 @@ export function focusElement(
 
 
 }
+
+
+/*
+=========================================================
+Initialize UI
+=========================================================
+*/
+
+export function initializeUI() {
+
+    initializeNavigation();
+
+    initializeLandingPage();
+
+    initializeTheme();
+
+}
+
+/*
+=========================================================
+Navigation
+=========================================================
+*/
+
+function initializeNavigation() {
+
+    const menuButton = select("#menu-toggle");
+    const navigation = select("#navigation-links");
+
+    if (!menuButton || !navigation) {
+        return;
+    }
+
+    menuButton.addEventListener("click", () => {
+
+        const open = navigation.classList.toggle("open");
+
+        menuButton.setAttribute(
+            "aria-expanded",
+            String(open)
+        );
+
+    });
+
+}
+
+/*
+=========================================================
+Landing Page
+=========================================================
+*/
+
+function initializeLandingPage() {
+
+    const startButton = select("#start-button");
+    const loginButton = select("#login-button");
+
+    if (startButton) {
+
+        startButton.addEventListener("click", () => {
+
+            window.location.hash = "#/dashboard";
+
+        });
+
+    }
+
+    if (loginButton) {
+
+        loginButton.addEventListener("click", () => {
+
+            window.location.hash = "#/login";
+
+        });
+
+    }
+
+}
+
+/*
+=========================================================
+Theme
+=========================================================
+*/
+
+function initializeTheme() {
+
+    const themeButton = select("#theme-switch");
+
+    if (!themeButton) {
+        return;
+    }
+
+    themeButton.addEventListener("click", () => {
+
+        document.body.classList.toggle("dark");
+
+    });
+
+}
+
 
