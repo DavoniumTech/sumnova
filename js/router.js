@@ -45,7 +45,7 @@ import {
 const routes = {
 
 
-    "/":
+    "#/":
 
     {
 
