@@ -365,6 +365,18 @@ a {
 
 }
 
+.app-loader {
+
+    display: none;
+
+}
+
+.app-loader.active {
+
+    display: flex;
+
+}
+
 
 
 
