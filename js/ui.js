@@ -114,60 +114,42 @@ Landing Page Buttons
 */
 
 
+
 function initializeLandingPage() {
 
+    console.log("initializeLandingPage()");
 
-    const startButton =
-        select("#start-button");
+    const startButton = select("#start-button");
+    const loginButton = select("#login-button");
 
-
-    const loginButton =
-        select("#login-button");
-
-
+    console.log(startButton);
+    console.log(loginButton);
 
     if (startButton) {
 
+        startButton.addEventListener("click", () => {
 
-        startButton.addEventListener(
-            "click",
-            () => {
+            console.log("Start button clicked");
 
+            window.location.hash = "#/dashboard";
 
-                window.location.hash =
-                    "#/dashboard";
-
-
-            }
-        );
-
+        });
 
     }
-
-
-
 
     if (loginButton) {
 
+        loginButton.addEventListener("click", () => {
 
-        loginButton.addEventListener(
-            "click",
-            () => {
+            console.log("Login button clicked");
 
+            window.location.hash = "#/login";
 
-                window.location.hash =
-                    "#/login";
-
-
-            }
-        );
-
+        });
 
     }
 
-
 }
-
 
 
 
