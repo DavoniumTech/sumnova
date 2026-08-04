@@ -281,19 +281,7 @@ Global Events
 function setupGlobalEvents() {
 
 
-    window.addEventListener(
-
-        "routechange",
-
-        () => {
-
-
-            handleRouteChange();
-
-
-        }
-
-    );
+    
 
 
 
