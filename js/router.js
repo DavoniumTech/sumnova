@@ -108,7 +108,7 @@ const routes = {
 
 
 
-let currentRoute = "/";
+let currentRoute = "#/";
 
 
 
@@ -212,7 +212,7 @@ export function navigate(
     if (!route) {
 
 
-        path = "/";
+        path = "#/";
 
 
     }
@@ -371,7 +371,7 @@ export function initializeRouter() {
 
 export function requireAuthentication(
     isAuthenticated,
-    redirectPath = "/login"
+    redirectPath = "#/login"
 ) {
 
 
