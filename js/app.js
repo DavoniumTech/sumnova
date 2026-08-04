@@ -98,7 +98,7 @@ export async function initializeApp() {
         initializeUI();
 
 
-        renderPage(window.location.hash || "#/");
+        
 
 
 
