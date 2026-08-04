@@ -1,116 +1,25 @@
 /*
-    SumNova/*
 =========================================================
-Initialize UI
+SumNova
+Davonium Technologies
+
+User Interface Module
+
+Responsibilities:
+- UI helpers
+- Toast messages
+- Loading states
+- DOM updates
+- Modal handling
+- Theme switching
+- Navigation UI
+- Accessibility helpers
+
+Does NOT handle:
+- Firebase
+- Authentication
+- AI logic
 =========================================================
-*/
-
-export function initializeUI() {
-
-    initializeNavigation();
-
-    initializeLandingPage();
-
-    initializeTheme();
-
-}
-
-/*
-=========================================================
-Navigation
-=========================================================
-*/
-
-function initializeNavigation() {
-
-    const menuButton = select("#menu-toggle");
-    const navigation = select("#navigation-links");
-
-    if (!menuButton || !navigation) {
-        return;
-    }
-
-    menuButton.addEventListener("click", () => {
-
-        const open = navigation.classList.toggle("open");
-
-        menuButton.setAttribute(
-            "aria-expanded",
-            String(open)
-        );
-
-    });
-
-}
-
-/*
-=========================================================
-Landing Page
-=========================================================
-*/
-
-function initializeLandingPage() {
-
-    const startButton = select("#start-button");
-    const loginButton = select("#login-button");
-
-    if (startButton) {
-
-        startButton.addEventListener("click", () => {
-
-            window.location.hash = "#/dashboard";
-
-        });
-
-    }
-
-    if (loginButton) {
-
-        loginButton.addEventListener("click", () => {
-
-            window.location.hash = "#/login";
-
-        });
-
-    }
-
-}
-
-/*
-=========================================================
-Theme
-=========================================================
-*/
-
-function initializeTheme() {
-
-    const themeButton = select("#theme-switch");
-
-    if (!themeButton) {
-        return;
-    }
-
-    themeButton.addEventListener("click", () => {
-
-        document.body.classList.toggle("dark");
-
-    });
-
-        }
-    Davonium Technologies
-
-    User Interface Module
-
-    Responsibilities:
-    - UI helpers
-    - Toast messages
-    - Loading states
-    - DOM updates
-
-    Does NOT handle:
-    - Firebase
-    - Authentication
-    - AI logic
 */
 
 
@@ -124,164 +33,222 @@ import {
 
 
 
+/*
+=========================================================
+Initialize UI
+=========================================================
+*/
+
+
+export function initializeUI() {
+
+    initializeNavigation();
+
+    initializeLandingPage();
+
+    initializeTheme();
+
+}
+
+
+
+
 
 
 /*
-    Show Loading Screen
+=========================================================
+Navigation
+=========================================================
+*/
+
+
+function initializeNavigation() {
+
+
+    const menuButton = select("#menu-toggle");
+
+    const navigation = select("#navigation-links");
+
+
+
+    if (!menuButton || !navigation) {
+
+        return;
+
+    }
+
+
+
+    menuButton.addEventListener(
+        "click",
+        () => {
+
+
+            const open =
+                navigation.classList.toggle(
+                    "open"
+                );
+
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                String(open)
+            );
+
+
+        }
+    );
+
+
+}
+
+
+
+
+
+
+/*
+=========================================================
+Landing Page Buttons
+=========================================================
+*/
+
+
+function initializeLandingPage() {
+
+
+    const startButton =
+        select("#start-button");
+
+
+    const loginButton =
+        select("#login-button");
+
+
+
+    if (startButton) {
+
+
+        startButton.addEventListener(
+            "click",
+            () => {
+
+
+                window.location.hash =
+                    "#/dashboard";
+
+
+            }
+        );
+
+
+    }
+
+
+
+
+    if (loginButton) {
+
+
+        loginButton.addEventListener(
+            "click",
+            () => {
+
+
+                window.location.hash =
+                    "#/login";
+
+
+            }
+        );
+
+
+    }
+
+
+}
+
+
+
+
+
+
+/*
+=========================================================
+Theme
+=========================================================
+*/
+
+
+function initializeTheme() {
+
+
+    const themeButton =
+        select("#theme-switch");
+
+
+
+    if (!themeButton) {
+
+        return;
+
+    }
+
+
+
+    themeButton.addEventListener(
+        "click",
+        () => {
+
+
+            document.body.classList.toggle(
+                "dark"
+            );
+
+
+        }
+    );
+
+
+}
+
+
+
+
+
+
+/*
+=========================================================
+Loading Screen
+=========================================================
 */
 
 
 export function showLoading() {
 
 
-    
-        const loader = select("#app-loader");
+    const loader =
+        select("#app-loader");
 
 
 
     if (!loader) {
 
-
-        return;
-
+        return false;
 
     }
 
 
 
     loader.classList.add(
-
         "active"
-
     );
 
 
 
     loader.setAttribute(
-
         "aria-hidden",
-
         "false"
-
-    );
-
-
-}
-
-
-
-
-
-
-
-/*
-    Hide Loading Screen
-*/
-
-
-export function hideLoading() {
-
-    console.log("Inside hideLoading");
-
-    const loader = document.getElementById("app-loader");
-
-    console.log(loader);
-
-    if (loader) {
-
-        loader.style.display = "none";
-
-    }
-
-}
-
-
-
-
-
-
-
-/*
-    Create Toast Notification
-*/
-
-
-export function showToast(
-    message,
-    type = "success"
-) {
-
-
-    const container =
-
-        select(
-
-            "#toast-container"
-
-        );
-
-
-
-    if (!container) {
-
-
-        return false;
-
-
-    }
-
-
-
-    const toast =
-
-        document.createElement(
-
-            "div"
-
-        );
-
-
-
-    toast.className =
-
-        `toast toast-${type}`;
-
-
-
-    toast.textContent = message;
-
-
-
-    toast.setAttribute(
-
-        "role",
-
-        "alert"
-
-    );
-
-
-
-    container.appendChild(
-
-        toast
-
-    );
-
-
-
-    setTimeout(
-
-        () => {
-
-
-            toast.remove();
-
-
-        },
-
-        4000
-
     );
 
 
@@ -296,9 +263,126 @@ export function showToast(
 
 
 
+export function hideLoading() {
+
+
+    const loader =
+        select("#app-loader");
+
+
+
+    if (!loader) {
+
+        return false;
+
+    }
+
+
+
+    loader.classList.remove(
+        "active"
+    );
+
+
+
+    loader.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+
+    return true;
+
+
+}
+
+
+
+
+
 
 /*
-    Update Element Text Safely
+=========================================================
+Toast Notifications
+=========================================================
+*/
+
+
+export function showToast(
+    message,
+    type = "success"
+) {
+
+
+    const container =
+        select("#toast-container");
+
+
+
+    if (!container) {
+
+        return false;
+
+    }
+
+
+
+    const toast =
+        document.createElement(
+            "div"
+        );
+
+
+
+    toast.className =
+        `toast toast-${type}`;
+
+
+
+    toast.textContent =
+        message;
+
+
+
+    toast.setAttribute(
+        "role",
+        "alert"
+    );
+
+
+
+    container.appendChild(
+        toast
+    );
+
+
+
+    setTimeout(
+        () => {
+
+            toast.remove();
+
+        },
+        4000
+    );
+
+
+
+    return true;
+
+
+}
+
+
+
+
+
+
+/*
+=========================================================
+DOM Helpers
+=========================================================
 */
 
 
@@ -315,15 +399,14 @@ export function updateText(
 
     if (!element) {
 
-
         return false;
-
 
     }
 
 
 
-    element.textContent = text;
+    element.textContent =
+        text;
 
 
 
@@ -335,12 +418,6 @@ export function updateText(
 
 
 
-
-
-
-/*
-    Toggle Element Visibility
-*/
 
 
 export function toggleVisibility(
@@ -356,15 +433,14 @@ export function toggleVisibility(
 
     if (!element) {
 
-
         return false;
-
 
     }
 
 
 
-    element.hidden = !visible;
+    element.hidden =
+        !visible;
 
 
 
@@ -373,8 +449,15 @@ export function toggleVisibility(
 
 }
 
+
+
+
+
+
 /*
-    Show Modal
+=========================================================
+Modal Helpers
+=========================================================
 */
 
 
@@ -390,28 +473,21 @@ export function showModal(
 
     if (!modal) {
 
-
         return false;
-
 
     }
 
 
 
     modal.classList.add(
-
         "active"
-
     );
 
 
 
     modal.setAttribute(
-
         "aria-hidden",
-
         "false"
-
     );
 
 
@@ -424,12 +500,6 @@ export function showModal(
 
 
 
-
-
-
-/*
-    Hide Modal
-*/
 
 
 export function hideModal(
@@ -444,28 +514,21 @@ export function hideModal(
 
     if (!modal) {
 
-
         return false;
-
 
     }
 
 
 
     modal.classList.remove(
-
         "active"
-
     );
 
 
 
     modal.setAttribute(
-
         "aria-hidden",
-
         "true"
-
     );
 
 
@@ -480,9 +543,10 @@ export function hideModal(
 
 
 
-
 /*
-    Set Button Loading State
+=========================================================
+Button Loading State
+=========================================================
 */
 
 
@@ -494,24 +558,20 @@ export function setButtonLoading(
 
     if (!button) {
 
-
         return false;
-
 
     }
 
 
 
-    button.disabled = loading;
+    button.disabled =
+        loading;
 
 
 
     button.setAttribute(
-
         "aria-busy",
-
         String(loading)
-
     );
 
 
@@ -520,13 +580,10 @@ export function setButtonLoading(
 
 
         button.dataset.originalText =
-
             button.textContent;
 
 
-
         button.textContent =
-
             "Loading...";
 
 
@@ -534,9 +591,7 @@ export function setButtonLoading(
 
 
         button.textContent =
-
             button.dataset.originalText ||
-
             button.textContent;
 
 
@@ -554,43 +609,48 @@ export function setButtonLoading(
 
 
 
-
 /*
-    Update Active Navigation Item
+=========================================================
+Navigation Active State
+=========================================================
 */
 
 
 export function setActiveNavigation(
     selector,
+    activeElement,
     activeClass = "active"
 ) {
 
 
     const items =
-
         document.querySelectorAll(
-
             selector
-
         );
 
 
 
     items.forEach(
-
         item => {
 
-
             item.classList.remove(
-
                 activeClass
-
             );
 
-
         }
-
     );
+
+
+
+    if (activeElement) {
+
+
+        activeElement.classList.add(
+            activeClass
+        );
+
+
+    }
 
 
 }
@@ -600,9 +660,10 @@ export function setActiveNavigation(
 
 
 
-
 /*
-    Show Empty State
+=========================================================
+Empty State
+=========================================================
 */
 
 
@@ -619,24 +680,20 @@ export function showEmptyState(
 
     if (!container) {
 
-
         return false;
-
 
     }
 
 
 
-    container.textContent = message;
+    container.textContent =
+        message;
 
 
 
     container.setAttribute(
-
         "role",
-
         "status"
-
     );
 
 
@@ -651,11 +708,10 @@ export function showEmptyState(
 
 
 
-
 /*
-    Focus Element
-
-    Improves keyboard accessibility.
+=========================================================
+Accessibility Helper
+=========================================================
 */
 
 
@@ -671,9 +727,7 @@ export function focusElement(
 
     if (!element) {
 
-
         return false;
-
 
     }
 
@@ -687,105 +741,3 @@ export function focusElement(
 
 
 }
-
-
-/*
-=========================================================
-Initialize UI
-=========================================================
-*/
-
-export function initializeUI() {
-
-    initializeNavigation();
-
-    initializeLandingPage();
-
-    initializeTheme();
-
-}
-
-/*
-=========================================================
-Navigation
-=========================================================
-*/
-
-function initializeNavigation() {
-
-    const menuButton = select("#menu-toggle");
-    const navigation = select("#navigation-links");
-
-    if (!menuButton || !navigation) {
-        return;
-    }
-
-    menuButton.addEventListener("click", () => {
-
-        const open = navigation.classList.toggle("open");
-
-        menuButton.setAttribute(
-            "aria-expanded",
-            String(open)
-        );
-
-    });
-
-}
-
-/*
-=========================================================
-Landing Page
-=========================================================
-*/
-
-function initializeLandingPage() {
-
-    const startButton = select("#start-button");
-    const loginButton = select("#login-button");
-
-    if (startButton) {
-
-        startButton.addEventListener("click", () => {
-
-            window.location.hash = "#/dashboard";
-
-        });
-
-    }
-
-    if (loginButton) {
-
-        loginButton.addEventListener("click", () => {
-
-            window.location.hash = "#/login";
-
-        });
-
-    }
-
-}
-
-/*
-=========================================================
-Theme
-=========================================================
-*/
-
-function initializeTheme() {
-
-    const themeButton = select("#theme-switch");
-
-    if (!themeButton) {
-        return;
-    }
-
-    themeButton.addEventListener("click", () => {
-
-        document.body.classList.toggle("dark");
-
-    });
-
-}
-
-
