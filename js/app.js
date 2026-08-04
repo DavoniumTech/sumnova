@@ -112,8 +112,7 @@ export async function initializeApp() {
 
 
 
-        console.log("hideLoading called");
-hideLoading();
+        
 
 
 
@@ -151,7 +150,6 @@ hideLoading();
 
 function setupAuthListener() {
 
-
     observeAuthState(
 
         user => {
@@ -159,27 +157,21 @@ function setupAuthListener() {
 
             if (user) {
 
-
-                handleAuthenticatedUser(
-
-                    user
-
-                );
-
+                handleAuthenticatedUser(user);
 
             } else {
 
-
                 handleGuestUser();
 
-
             }
+
+
+            hideLoading();
 
 
         }
 
     );
-
 
 }
 
