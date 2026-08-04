@@ -365,6 +365,19 @@ a {
 
 }
 
+    .app-loader[aria-hidden="true"] {
+
+    display: none;
+
+}
+
+.app-loader[aria-hidden="false"] {
+
+    display: flex;
+
+}
+
+
 .app-loader {
 
     display: none;
