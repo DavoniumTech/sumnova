@@ -84,38 +84,17 @@ export function showLoading() {
 
 export function hideLoading() {
 
+    console.log("Inside hideLoading");
 
-    const loader =
-        select("#loading-screen");
+    const loader = document.getElementById("app-loader");
 
+    console.log(loader);
 
+    if (loader) {
 
-    if (!loader) {
-
-
-        return;
-
+        loader.style.display = "none";
 
     }
-
-
-
-    loader.classList.remove(
-
-        "active"
-
-    );
-
-
-
-    loader.setAttribute(
-
-        "aria-hidden",
-
-        "true"
-
-    );
-
 
 }
 
