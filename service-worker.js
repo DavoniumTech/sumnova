@@ -18,7 +18,7 @@
 */
 
 
-const CACHE_VERSION = "sumnova-cache-v3";
+const CACHE_VERSION = "sumnova-cache-v4";
 
 
 const APP_SHELL = [
