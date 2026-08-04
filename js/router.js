@@ -89,16 +89,21 @@ const routes = {
     },
 
 
-    "#/profile":
+    
+"#/history",
 
-    {
+{
+    name: "history",
+    protected: true
+},
 
-        name: "profile",
 
-        protected: true
+"#/settings",
 
-    }
-
+{
+    name: "settings",
+    protected: true
+}
 
 };
 
@@ -321,7 +326,95 @@ function notifyRouteListeners() {
 }
 
 
+/*
+=========================================================
+Render Application Pages
+=========================================================
+*/
 
+function renderPage(route) {
+
+
+    const pages = [
+
+        "#landing-page",
+        "#dashboard-page",
+        "#history-page",
+        "#settings-page"
+
+    ];
+
+
+    pages.forEach(id => {
+
+        const page = document.querySelector(id);
+
+        if (page) {
+
+            page.hidden = true;
+
+        }
+
+    });
+
+
+
+    switch(route) {
+
+
+        case "#/dashboard":
+
+            document.querySelector(
+                "#dashboard-page"
+            ).hidden = false;
+
+            break;
+
+
+
+        case "#/history":
+
+            document.querySelector(
+                "#history-page"
+            ).hidden = false;
+
+            break;
+
+
+
+        case "#/settings":
+
+            document.querySelector(
+                "#settings-page"
+            ).hidden = false;
+
+            break;
+
+
+
+        case "#/login":
+
+            document.querySelector(
+                "#landing-page"
+            ).hidden = false;
+
+            break;
+
+
+
+        default:
+
+            document.querySelector(
+                "#landing-page"
+            ).hidden = false;
+
+            break;
+
+
+    }
+
+
+}
 
 
 
@@ -333,24 +426,30 @@ function notifyRouteListeners() {
 
 export function initializeRouter() {
 
-
-    window.addEventListener("hashchange", () => {
+window.addEventListener("hashchange", () => {
 
     currentRoute = window.location.hash || "#/";
 
+    renderPage(currentRoute);
+
     notifyRouteListeners();
 
-    window.dispatchEvent(new Event("routechange"));
+    window.dispatchEvent(
+        new Event("routechange")
+    );
 
 });
+    
+
+   }
 
 
 
     currentRoute = window.location.hash || "#/";
 
+renderPage(currentRoute);
 
-
-    notifyRouteListeners();
+notifyRouteListeners();
 
 
 }
