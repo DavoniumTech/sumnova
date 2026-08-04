@@ -28,9 +28,7 @@ import {
 
 import {
 
-    initializeRouter,
-
-    onRouteChange
+    initializeRouter
 
 } from "./router.js";
 
@@ -41,7 +39,6 @@ import {
     observeAuthState
 
 } from "./auth.js";
-
 
 
 
@@ -60,6 +57,7 @@ import {
 
 
 
+
 let applicationReady = false;
 
 
@@ -69,7 +67,9 @@ let applicationReady = false;
 
 
 /*
-    Initialize Application
+=========================================================
+Initialize Application
+=========================================================
 */
 
 
@@ -78,9 +78,7 @@ export async function initializeApp() {
 
     if (applicationReady) {
 
-
         return;
-
 
     }
 
@@ -94,6 +92,7 @@ export async function initializeApp() {
 
 
         initializeRouter();
+
 
 
         initializeUI();
@@ -112,11 +111,40 @@ export async function initializeApp() {
 
 
 
-        
+        console.log(
+            "SumNova application initialized."
+        );
 
 
 
-    } 
+    } catch (error) {
+
+
+        console.error(
+            "Application startup failed:",
+            error
+        );
+
+
+
+        hideLoading();
+
+
+
+        showToast(
+
+            "Application failed to start.",
+
+            "error"
+
+        );
+
+
+    }
+
+
+}
+
 
 
 
@@ -125,11 +153,14 @@ export async function initializeApp() {
 
 
 /*
-    Authentication Listener
+=========================================================
+Authentication Listener
+=========================================================
 */
 
 
 function setupAuthListener() {
+
 
     observeAuthState(
 
@@ -138,21 +169,32 @@ function setupAuthListener() {
 
             if (user) {
 
-                handleAuthenticatedUser(user);
+
+                handleAuthenticatedUser(
+
+                    user
+
+                );
+
 
             } else {
 
+
                 handleGuestUser();
 
+
             }
+
 
 
             hideLoading();
 
 
+
         }
 
     );
+
 
 }
 
@@ -163,7 +205,9 @@ function setupAuthListener() {
 
 
 /*
-    Authenticated User Handler
+=========================================================
+Authenticated User Handler
+=========================================================
 */
 
 
@@ -198,7 +242,9 @@ function handleAuthenticatedUser(
 
 
 /*
-    Guest User Handler
+=========================================================
+Guest User Handler
+=========================================================
 */
 
 
@@ -219,8 +265,15 @@ function handleGuestUser() {
 }
 
 
+
+
+
+
+
 /*
-    Global Event Setup
+=========================================================
+Global Events
+=========================================================
 */
 
 
@@ -231,7 +284,7 @@ function setupGlobalEvents() {
 
         "routechange",
 
-        event => {
+        () => {
 
 
             handleRouteChange();
@@ -295,7 +348,9 @@ function setupGlobalEvents() {
 
 
 /*
-    Route Change Handler
+=========================================================
+Route Change Handler
+=========================================================
 */
 
 
@@ -303,8 +358,7 @@ function handleRouteChange() {
 
 
     const route =
-    window.location.hash;
-
+        window.location.hash;
 
 
 
@@ -338,7 +392,9 @@ function handleRouteChange() {
 
 
 /*
-    Application Ready Status
+=========================================================
+Application Ready Status
+=========================================================
 */
 
 
@@ -357,7 +413,9 @@ export function isAppReady() {
 
 
 /*
-    Get Application Information
+=========================================================
+Application Information
+=========================================================
 */
 
 
@@ -394,10 +452,9 @@ export function getAppInfo() {
 
 
 /*
-    Start Application
-
-    Automatically starts
-    when DOM is ready.
+=========================================================
+Start Application
+=========================================================
 */
 
 
