@@ -233,6 +233,8 @@ export function navigate(
 
     currentRoute = path;
 
+notifyRouteListeners();
+
 
 
     window.dispatchEvent(
