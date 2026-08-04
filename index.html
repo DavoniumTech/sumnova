@@ -1,1 +1,1571 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!--
+        SumNova
+        Davonium Technologies
+
+        Production SaaS Application Shell
+
+        This file provides:
+        - Application structure
+        - SEO metadata
+        - PWA integration
+        - Accessibility foundation
+        - UI mounting points
+
+        Business logic belongs in JavaScript modules.
+    -->
+
+
+    <meta charset="UTF-8">
+
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+
+
+    <title>
+        SumNova — Learn Faster. Understand Better.
+    </title>
+
+
+    <meta name="description"
+          content="SumNova is an AI-powered study assistant by Davonium Technologies that helps students, researchers, educators, and professionals understand information faster through intelligent summaries.">
+
+
+    <meta name="author"
+          content="Davonium Technologies">
+
+
+    <meta name="application-name"
+          content="SumNova">
+
+
+    <meta name="theme-color"
+          content="#6D28D9">
+
+
+    <meta name="color-scheme"
+          content="light dark">
+
+
+
+
+
+    <!-- PWA Configuration -->
+
+
+    <link rel="manifest"
+          href="manifest.json">
+
+
+
+    <link rel="icon"
+          type="image/png"
+          sizes="192x192"
+          href="assets/icon-192.png">
+
+
+
+    <link rel="icon"
+          type="image/png"
+          sizes="512x512"
+          href="assets/icon-512.png">
+
+
+
+    <link rel="apple-touch-icon"
+          href="assets/icon-192.png">
+
+
+
+
+
+    <!-- Application Styles -->
+
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
+
+
+</head>
+
+
+
+
+<body>
+
+
+    <!-- Accessibility Navigation -->
+
+
+    <a href="#app-root"
+       class="skip-link">
+
+        Skip to main content
+
+    </a>
+
+
+
+
+
+    <!-- Initial Loading State -->
+
+
+    <div id="app-loader"
+         class="app-loader"
+         role="status"
+         aria-live="polite">
+
+
+        <div class="loader-content">
+
+
+            <img src="assets/icon-192.png"
+                 alt="SumNova logo">
+
+
+            <h1>
+                SumNova
+            </h1>
+
+
+            <p>
+                Learn Faster. Understand Better.
+            </p>
+
+
+            <div class="loader-animation"
+                 aria-hidden="true">
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+    <!-- Offline Experience -->
+
+
+    <div id="offline-status"
+         class="offline-status"
+         role="alert"
+         hidden>
+
+
+        You are currently offline.
+        Some features may be limited.
+
+    </div>
+
+
+
+
+
+    <!-- PWA Update Notification -->
+
+
+    <div id="update-notification"
+         class="update-notification"
+         role="status"
+         hidden>
+
+
+        <p>
+            A new version of SumNova is available.
+        </p>
+
+
+        <button id="update-application"
+                type="button">
+
+            Update
+
+        </button>
+
+
+    </div>
+
+
+
+
+
+    <!-- PWA Install Prompt -->
+
+
+    <div id="install-notification"
+         class="install-notification"
+         role="dialog"
+         aria-label="Install SumNova"
+         hidden>
+
+
+        <p>
+            Install SumNova for a faster app experience.
+        </p>
+
+
+        <button id="install-application"
+                type="button">
+
+            Install
+
+        </button>
+
+
+    </div>
+
+
+
+
+
+    <!-- Application Header -->
+
+
+    <header id="app-header"
+            class="app-header">
+
+
+        <nav class="main-navigation"
+             aria-label="Primary navigation">
+
+
+            <a href="#/"
+               class="brand"
+               aria-label="SumNova homepage">
+
+
+                <img src="assets/icon-192.png"
+                     alt=""
+                     class="brand-logo">
+
+
+                <span class="brand-name">
+
+                    SumNova
+
+                </span>
+
+
+            </a>
+
+
+
+
+
+            <button id="menu-toggle"
+                    type="button"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false">
+
+
+                <span></span>
+
+                <span></span>
+
+                <span></span>
+
+
+            </button>
+
+
+
+
+
+            <div id="navigation-links"
+                 class="navigation-links">
+
+
+                <a href="#/"
+                   data-route="home">
+
+                    Home
+
+                </a>
+
+
+
+                <a href="#/dashboard"
+                   data-route="dashboard">
+
+                    Dashboard
+
+                </a>
+
+
+
+                <a href="#/history"
+                   data-route="history">
+
+                    History
+
+                </a>
+
+
+
+                <a href="#/settings"
+                   data-route="settings">
+
+                    Settings
+
+                </a>
+
+
+
+                <button id="theme-switch"
+                        type="button"
+                        aria-label="Change theme">
+
+                    Theme
+
+                </button>
+
+
+            </div>
+
+
+        </nav>
+
+
+    </header>
+
+
+
+  
+    <!-- Main Application Root -->
+
+
+    <main id="app-root"
+          class="app-root"
+          tabindex="-1">
+
+
+
+
+
+        <!-- Public Landing Page -->
+
+        <section id="landing-page"
+                 class="page-section landing-page"
+                 data-page="home">
+
+
+
+
+
+            <!-- Hero Section -->
+
+
+            <section class="hero-section"
+                     aria-labelledby="hero-title">
+
+
+
+                <div class="hero-content">
+
+
+
+                    <span class="hero-badge">
+
+                        AI-Powered Learning Assistant
+
+                    </span>
+
+
+
+
+                    <h1 id="hero-title">
+
+                        Learn Faster.
+                        <br>
+                        Understand Better.
+
+                    </h1>
+
+
+
+
+                    <p class="hero-description">
+
+                        SumNova helps students, researchers,
+                        educators, and professionals transform
+                        complex information into clear,
+                        useful summaries.
+
+                    </p>
+
+
+
+
+                    <div class="hero-actions">
+
+
+
+                        <button id="start-button"
+                                class="primary-button"
+                                type="button">
+
+                            Get Started
+
+                        </button>
+
+
+
+
+                        <button id="login-button"
+                                class="secondary-button"
+                                type="button">
+
+                            Sign In
+
+                        </button>
+
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
+
+                <!-- Product Preview -->
+
+
+                <div class="hero-preview"
+                     aria-hidden="true">
+
+
+
+                    <div class="ai-summary-preview">
+
+
+
+                        <header>
+
+                            SumNova AI Summary
+
+                        </header>
+
+
+
+
+
+                        <div class="summary-preview-content">
+
+
+                            <span></span>
+
+                            <span></span>
+
+                            <span></span>
+
+
+                        </div>
+
+
+
+
+
+                        <ul>
+
+
+                            <li>
+
+                                Key concepts identified
+
+                            </li>
+
+
+
+                            <li>
+
+                                Important information organized
+
+                            </li>
+
+
+
+                            <li>
+
+                                Easier understanding
+
+                            </li>
+
+
+
+                        </ul>
+
+
+
+                    </div>
+
+
+
+                </div>
+
+
+
+
+            </section>
+
+
+
+
+
+
+
+
+
+            <!-- Product Benefits -->
+
+
+            <section class="benefits-section"
+                     aria-labelledby="benefits-title">
+
+
+
+                <h2 id="benefits-title">
+
+                    Built For Better Learning
+
+                </h2>
+
+
+
+
+
+                <div class="benefits-grid">
+
+
+
+
+
+                    <article class="benefit-card">
+
+
+                        <h3>
+
+                            Intelligent Summaries
+
+                        </h3>
+
+
+                        <p>
+
+                            Turn long documents and notes
+                            into useful summaries.
+
+                        </p>
+
+
+                    </article>
+
+
+
+
+
+
+                    <article class="benefit-card">
+
+
+                        <h3>
+
+                            Multiple Learning Modes
+
+                        </h3>
+
+
+                        <p>
+
+                            Create summaries for exams,
+                            assignments, research, lectures,
+                            and business meetings.
+
+                        </p>
+
+
+                    </article>
+
+
+
+
+
+
+
+                    <article class="benefit-card">
+
+
+                        <h3>
+
+                            Personal Knowledge Library
+
+                        </h3>
+
+
+                        <p>
+
+                            Save and manage your previous
+                            summaries securely.
+
+                        </p>
+
+
+                    </article>
+
+
+
+
+
+
+
+                    <article class="benefit-card">
+
+
+                        <h3>
+
+                            Available Everywhere
+
+                        </h3>
+
+
+                        <p>
+
+                            Use SumNova across phones,
+                            tablets, and computers.
+
+                        </p>
+
+
+                    </article>
+
+
+
+
+
+                </div>
+
+
+
+            </section>
+
+
+
+
+
+
+
+
+
+            <!-- Future SaaS Growth Section -->
+
+
+            <section class="growth-section"
+                     aria-labelledby="growth-title">
+
+
+
+                <h2 id="growth-title">
+
+                    Designed For Future Growth
+
+                </h2>
+
+
+
+
+                <p>
+
+                    SumNova is built with a scalable
+                    foundation for students, schools,
+                    universities, teams, and organizations.
+
+                </p>
+
+
+
+            </section>
+
+
+
+
+
+
+
+
+            <!-- Authentication Mount Points -->
+
+
+            <section id="authentication-container"
+                     class="authentication-container"
+                     aria-label="User authentication">
+
+
+
+
+
+                <div id="login-view"
+                     class="auth-view"
+                     hidden>
+
+
+                    <!-- Login UI rendered by auth.js -->
+
+
+                </div>
+
+
+
+
+
+
+                <div id="register-view"
+                     class="auth-view"
+                     hidden>
+
+
+                    <!-- Registration UI rendered by auth.js -->
+
+
+                </div>
+
+
+
+
+
+
+
+                <div id="forgot-password-view"
+                     class="auth-view"
+                     hidden>
+
+
+                    <!-- Password reset UI rendered by auth.js -->
+
+
+                </div>
+
+
+
+
+
+
+
+                <div id="verification-view"
+                     class="auth-view"
+                     hidden>
+
+
+                    <!-- Email verification UI rendered by auth.js -->
+
+
+                </div>
+
+
+
+            </section>
+
+
+
+
+
+        </section>
+
+
+
+
+
+
+
+
+        <!-- Protected Dashboard -->
+
+
+
+        <section id="dashboard-page"
+                 class="page-section dashboard-page"
+                 data-page="dashboard"
+                 hidden>
+
+
+
+
+            <header class="dashboard-header">
+
+
+
+                <h1>
+
+                    Dashboard
+
+                </h1>
+
+
+
+
+                <p>
+
+                    Create, manage, and review your summaries.
+
+                </p>
+
+
+
+            </header>
+
+
+
+
+
+
+
+            <!-- AI Summary Workspace -->
+
+
+            <section class="summary-workspace"
+                     aria-labelledby="summary-workspace-title">
+
+
+
+                <h2 id="summary-workspace-title">
+
+                    Create Summary
+
+                </h2>
+
+
+
+
+
+
+                <label for="summary-input">
+
+
+                    Paste your content
+
+
+                </label>
+
+
+
+
+
+
+                <textarea id="summary-input"
+                          name="summaryInput"
+                          rows="12"
+                          placeholder="Paste your text here...">
+
+
+                </textarea>
+
+
+
+
+
+
+
+                <div class="summary-controls">
+
+
+
+                    <label for="summary-category">
+
+                        Summary Category
+
+                    </label>
+
+
+
+
+
+                    <select id="summary-category"
+                            name="summaryCategory">
+
+
+
+                        <option value="exam">
+
+                            Exam Summary
+
+                        </option>
+
+
+
+                        <option value="assignment">
+
+                            Assignment Summary
+
+                        </option>
+
+
+
+                        <option value="research">
+
+                            Research Paper Summary
+
+                        </option>
+
+
+
+                        <option value="meeting">
+
+                            Business Meeting Summary
+
+                        </option>
+
+
+
+                        <option value="lecture">
+
+                            Lecture Notes Summary
+
+                        </option>
+
+
+
+                        <option value="simple">
+
+                            Simple Explanation
+
+                        </option>
+
+
+
+                        <option value="key-points">
+
+                            Key Points Summary
+
+                        </option>
+
+
+
+                    </select>
+
+
+
+
+
+
+                    <button id="generate-summary"
+                            class="primary-button"
+                            type="button">
+
+
+                        Generate Summary
+
+
+                    </button>
+
+
+
+                </div>
+
+
+            </section>
+
+
+
+
+
+
+            <!-- Summary Result Section -->
+
+
+            <section class="summary-result-section"
+                     aria-labelledby="summary-result-title">
+
+
+                <header class="summary-result-header">
+
+
+                    <h2 id="summary-result-title">
+
+                        Generated Summary
+
+                    </h2>
+
+
+
+
+                    <div class="summary-action-buttons">
+
+
+
+                        <button id="copy-summary-button"
+                                type="button">
+
+                            Copy
+
+                        </button>
+
+
+
+
+
+                        <button id="download-summary-button"
+                                type="button">
+
+                            Download
+
+                        </button>
+
+
+
+
+
+                        <button id="delete-summary-button"
+                                type="button">
+
+                            Delete
+
+                        </button>
+
+
+
+                    </div>
+
+
+                </header>
+
+
+
+
+
+
+                <article id="summary-output"
+                         class="summary-output"
+                         aria-live="polite">
+
+
+                    <p>
+
+                        Your generated summary will appear here.
+
+                    </p>
+
+
+
+                </article>
+
+
+
+            </section>
+
+
+
+
+
+        </section>
+
+
+
+
+
+
+
+
+
+        <!-- Summary History Page -->
+
+
+        <section id="history-page"
+                 class="page-section history-page"
+                 data-page="history"
+                 hidden>
+
+
+
+
+            <header class="page-header">
+
+
+                <h1>
+
+                    Summary History
+
+                </h1>
+
+
+
+
+                <p>
+
+                    Search and manage your saved summaries.
+
+                </p>
+
+
+            </header>
+
+
+
+
+
+
+
+            <div class="history-search">
+
+
+
+                <label for="history-search-input">
+
+                    Search summaries
+
+                </label>
+
+
+
+
+
+                <input id="history-search-input"
+                       type="search"
+                       placeholder="Search history...">
+
+
+
+            </div>
+
+
+
+
+
+
+
+            <div id="history-list"
+                 class="history-list">
+
+
+                <!-- Firestore summary history rendered here -->
+
+
+            </div>
+
+
+
+
+        </section>
+
+
+
+
+
+
+
+
+
+        <!-- Settings Page -->
+
+
+        <section id="settings-page"
+                 class="page-section settings-page"
+                 data-page="settings"
+                 hidden>
+
+
+
+            <header class="page-header">
+
+
+                <h1>
+
+                    Account Settings
+
+                </h1>
+
+
+
+
+                <p>
+
+                    Manage your profile, preferences,
+                    and account options.
+
+                </p>
+
+
+
+            </header>
+
+
+
+
+
+
+
+
+            <!-- Profile Area -->
+
+
+            <section class="profile-section"
+                     aria-labelledby="profile-title">
+
+
+
+                <h2 id="profile-title">
+
+                    Profile
+
+                </h2>
+
+
+
+
+                <div id="profile-container">
+
+
+                    <!-- User profile rendered by ui.js -->
+
+
+                </div>
+
+
+
+
+
+                <button id="save-profile-button"
+                        type="button">
+
+                    Save Changes
+
+                </button>
+
+
+
+            </section>
+
+
+
+
+
+
+
+
+
+            <!-- Appearance Settings -->
+
+
+            <section class="appearance-section"
+                     aria-labelledby="appearance-title">
+
+
+
+                <h2 id="appearance-title">
+
+                    Appearance
+
+                </h2>
+
+
+
+
+
+                <button id="light-mode-button"
+                        type="button">
+
+                    Light Mode
+
+                </button>
+
+
+
+
+
+
+                <button id="dark-mode-button"
+                        type="button">
+
+                    Dark Mode
+
+                </button>
+
+
+
+            </section>
+
+
+
+
+
+
+
+
+
+            <!-- Future SaaS Account Features -->
+
+
+            <section class="account-growth-section"
+                     aria-labelledby="account-growth-title">
+
+
+
+                <h2 id="account-growth-title">
+
+                    Account Information
+
+                </h2>
+
+
+
+
+
+                <div id="subscription-container">
+
+
+                    <!-- Future Paystack / Flutterwave subscriptions -->
+
+
+                </div>
+
+
+
+
+
+
+                <div id="usage-container">
+
+
+                    <!-- Future AI usage limits -->
+
+
+                </div>
+
+
+
+
+
+
+                <div id="analytics-container">
+
+
+                    <!-- Future user analytics data -->
+
+
+                </div>
+
+
+
+            </section>
+
+
+
+
+        </section>
+
+
+
+
+
+
+
+
+
+        <!-- Global Modal Container -->
+
+
+        <div id="modal-container"
+             class="modal-container"
+             aria-hidden="true">
+
+
+
+            <!-- Reusable modal components -->
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+        <!-- Toast Notification Container -->
+
+
+        <div id="toast-container"
+             class="toast-container"
+             role="status"
+             aria-live="polite"
+             aria-atomic="true">
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+    </main>
+
+
+
+
+
+
+
+
+
+    <!-- Application Footer -->
+
+
+    <footer id="app-footer"
+            class="app-footer">
+
+
+
+
+
+        <div class="footer-content">
+
+
+
+            <div class="footer-brand">
+
+
+
+                <img src="assets/icon-192.png"
+                     alt="SumNova logo">
+
+
+
+
+
+                <p>
+
+                    SumNova by Davonium Technologies.
+
+                </p>
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+            <nav class="footer-navigation"
+                 aria-label="Footer navigation">
+
+
+
+                <a href="#/">
+
+                    Home
+
+                </a>
+
+
+
+
+                <a href="#/privacy">
+
+                    Privacy
+
+                </a>
+
+
+
+
+
+                <a href="#/terms">
+
+                    Terms
+
+                </a>
+
+
+
+
+
+                <a href="#/contact">
+
+                    Contact
+
+                </a>
+
+
+
+            </nav>
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+        <p class="copyright">
+
+
+            © <span id="current-year"></span>
+            Davonium Technologies.
+            All rights reserved.
+
+
+        </p>
+
+
+
+
+
+    </footer>
+
+
+
+
+
+
+
+
+    <!-- Application Entry Point -->
+
+
+    <script type="module"
+            src="js/app.js">
+    </script>
+
+
+
+
+
+</body>
+
+</html>
+          
