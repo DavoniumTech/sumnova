@@ -1,103 +1,78 @@
 /*
-    SumNova
-    Davonium Technologies
+=========================================================
+SumNova
+Davonium Technologies
 
-    Application Router
+Application Router
 
-    Responsibilities:
-    - Client-side navigation
-    - Route management
-    - Protected route foundation
+Responsibilities:
+- Client-side routing
+- Route registration
+- Page rendering
+- Navigation
+- Route events
 
-    Does NOT handle:
-    - Authentication requests
-    - Firebase operations
-    - UI rendering logic
+Does NOT handle:
+- Firebase
+- Authentication
+- AI logic
+- UI initialization
+=========================================================
 */
-
-
-import {
-
-    select
-
-} from "./utils.js";
-
-
 
 
 
 
 
 /*
-    Application Routes
-
-    Public:
-    - landing
-    - login
-    - register
-
-    Protected:
-    - dashboard
-    - profile
+=========================================================
+Routes
+=========================================================
 */
-
 
 const routes = {
 
+    "#/": {
 
-    "#/ ":
-
-    {
-
-        name: "home",
-
+        page: "landing-page",
         protected: false
 
     },
 
+    "#/login": {
 
-    "#/login":
-
-    {
-
-        name: "login",
-
+        page: "landing-page",
         protected: false
 
     },
 
+    "#/register": {
 
-    "#/register":
-
-    {
-
-        name: "register",
-
+        page: "landing-page",
         protected: false
 
     },
 
+    "#/dashboard": {
 
-    "#/dashboard":
-
-    {
-
-        name: "dashboard",
-
+        page: "dashboard-page",
         protected: true
 
     },
 
-
     "#/history": {
-    name: "history",
-    protected: true
-},
 
-"#/settings": {
-    name: "settings",
-    protected: true
-}
+        page: "history-page",
+        protected: true
+
+    },
+
+    "#/settings": {
+
+        page: "settings-page",
+        protected: true
+
+    }
 
 };
 
@@ -105,129 +80,13 @@ const routes = {
 
 
 
-
+/*
+=========================================================
+Router State
+=========================================================
+*/
 
 let currentRoute = "#/";
-
-
-
-
-
-
-
-/*
-    Get Current Route
-*/
-
-
-export function getCurrentRoute() {
-
-
-    return currentRoute;
-
-
-}
-
-
-
-
-
-
-
-/*
-    Find Route
-*/
-
-
-export function findRoute(
-    path
-) {
-
-
-    return (
-
-        routes[path]
-
-        || null
-
-    );
-
-
-}
-
-
-
-
-
-
-
-/*
-    Check Protected Route
-*/
-
-
-export function isProtectedRoute(
-    path
-) {
-
-
-    const route =
-        findRoute(path);
-
-
-
-    return Boolean(
-
-        route &&
-
-        route.protected
-
-    );
-
-
-}
-
-
-
-
-
-
-
-/*
-    Navigate To Route
-*/
-
-
-export function navigate(
-    path
-) {
-
-
-    const route =
-        findRoute(path);
-
-
-
-    if (!route) {
-
-
-        path = "#/";
-
-
-    }
-
-
-
-    window.location.hash = path;
-
-
-}
-
-
-/*
-    Route Change Listener System
-*/
-
 
 const routeListeners = [];
 
@@ -235,276 +94,21 @@ const routeListeners = [];
 
 
 
-
-
-/*
-    Subscribe To Route Changes
-*/
-
-
-export function onRouteChange(
-    callback
-) {
-
-
-    if (
-
-        typeof callback !== "function"
-
-    ) {
-
-
-        return false;
-
-
-    }
-
-
-
-    routeListeners.push(
-
-        callback
-
-    );
-
-
-
-    return true;
-
-
-}
-
-
-
-
-
-
-
-/*
-    Notify Route Listeners
-*/
-
-
-function notifyRouteListeners() {
-
-
-    routeListeners.forEach(
-
-        callback => {
-
-
-            try {
-
-
-                callback(
-
-                    currentRoute
-
-                );
-
-
-            } catch (error) {
-
-
-                return;
-
-
-            }
-
-
-        }
-
-    );
-
-
-}
-
-
 /*
 =========================================================
-Render Application Pages
+Public API
 =========================================================
 */
 
-function renderPage(route) {
+export function getCurrentRoute() {
 
-
-    const pages = [
-
-        "#landing-page",
-        "#dashboard-page",
-        "#history-page",
-        "#settings-page"
-
-    ];
-
-
-    pages.forEach(id => {
-
-        const page = document.querySelector(id);
-
-        if (page) {
-
-            page.hidden = true;
-
-        }
-
-    });
-
-
-
-    switch(route) {
-
-
-        case "#/dashboard":
-
-            document.querySelector(
-                "#dashboard-page"
-            ).hidden = false;
-
-            break;
-
-
-
-        case "#/history":
-
-            document.querySelector(
-                "#history-page"
-            ).hidden = false;
-
-            break;
-
-
-
-        case "#/settings":
-
-            document.querySelector(
-                "#settings-page"
-            ).hidden = false;
-
-            break;
-
-
-
-        case "#/login":
-
-            document.querySelector(
-                "#landing-page"
-            ).hidden = false;
-
-            break;
-
-
-
-        default:
-
-            document.querySelector(
-                "#landing-page"
-            ).hidden = false;
-
-            break;
-
-
-    }
-
+    return currentRoute;
 
 }
 
-
-
-
-/*
-    Browser Back And Forward Support
-*/
-
-
-export function initializeRouter() {
-
-    window.addEventListener("hashchange", () => {
-
-        currentRoute = window.location.hash || "#/";
-
-        renderPage(currentRoute);
-
-        notifyRouteListeners();
-
-        window.dispatchEvent(new Event("routechange"));
-
-    });
-
-    currentRoute = window.location.hash || "#/";
-
-    renderPage(currentRoute);
-
-    notifyRouteListeners();
-
-}
-
-    
-
-    
-
-        
-    
-
-
-
-
-
-/*
-    Protected Route Guard Foundation
-
-    Authentication logic will be
-    provided by auth.js.
-*/
-
-
-export function requireAuthentication(
-    isAuthenticated,
-    redirectPath = "#/login"
-) {
-
-
-    if (
-
-        isAuthenticated
-
-    ) {
-
-
-        return true;
-
-
-    }
-
-
-
-    navigate(
-
-        redirectPath
-
-    );
-
-
-
-    return false;
-
-
-}
-
-
-
-
-
-
-
-/*
-    Get All Available Routes
-*/
 
 
 export function getRoutes() {
-
 
     return {
 
@@ -512,42 +116,326 @@ export function getRoutes() {
 
     };
 
+}
+
+
+
+export function findRoute(path) {
+
+    return routes[path] || null;
 
 }
 
 
+
+export function isProtectedRoute(path) {
+
+    const route = findRoute(path);
+
+    return route ? route.protected : false;
+
+}
+
+
+
+
+/*
+=========================================================
+Navigation
+=========================================================
+*/
+
+export function navigate(path) {
+
+    if (!findRoute(path)) {
+
+        path = "#/";
+
+    }
+
+    if (window.location.hash === path) {
+
+        updateRoute(path);
+
+        return;
+
+    }
+
+    window.location.hash = path;
+
+}
 
 
 
 
 
 /*
-    Render Route Helper
-
-    Allows app.js to connect
-    UI rendering with routing.
+=========================================================
+Route Listeners
+=========================================================
 */
 
+export function onRouteChange(callback) {
 
-export function renderRoute(
-    callback
-) {
+    if (typeof callback !== "function") {
 
+        return false;
 
-    onRouteChange(
+    }
 
-        callback
+    routeListeners.push(callback);
 
-    );
-
-
-
-    callback(
-
-        currentRoute
-
-    );
-
+    return true;
 
 }
-      
+
+
+
+
+
+function notifyRouteListeners() {
+
+    routeListeners.forEach(listener => {
+
+        try {
+
+            listener(currentRoute);
+
+        }
+
+        catch (error) {
+
+            console.error(
+                "Route listener failed:",
+                error
+            );
+
+        }
+
+    });
+
+}
+
+
+
+
+
+/*
+=========================================================
+Route Update
+=========================================================
+*/
+
+function updateRoute(path) {
+
+    currentRoute = path;
+
+    renderCurrentPage();
+
+    notifyRouteListeners();
+
+    window.dispatchEvent(
+
+        new CustomEvent(
+
+            "routechange",
+
+            {
+
+                detail: {
+
+                    route: currentRoute
+
+                }
+
+            }
+
+        )
+
+    );
+
+}
+
+
+
+/*
+=========================================================
+Page Rendering
+=========================================================
+*/
+
+function renderCurrentPage() {
+
+    const pages = document.querySelectorAll(".page-section");
+
+    pages.forEach(page => {
+
+        page.hidden = true;
+
+    });
+
+    const route = findRoute(currentRoute);
+
+    if (!route) {
+
+        currentRoute = "#/";
+
+        return renderCurrentPage();
+
+    }
+
+    const page = document.getElementById(route.page);
+
+    if (page) {
+
+        page.hidden = false;
+
+    }
+
+    updateNavigation();
+
+}
+
+
+
+
+
+/*
+=========================================================
+Navigation Highlight
+=========================================================
+*/
+
+function updateNavigation() {
+
+    const links = document.querySelectorAll("[data-route]");
+
+    links.forEach(link => {
+
+        link.classList.remove("active");
+
+    });
+
+    const route = findRoute(currentRoute);
+
+    if (!route) {
+
+        return;
+
+    }
+
+    links.forEach(link => {
+
+        const target = link.getAttribute("href");
+
+        if (target === currentRoute) {
+
+            link.classList.add("active");
+
+        }
+
+    });
+
+}
+
+
+
+/*
+=========================================================
+Router Initialization
+=========================================================
+*/
+
+export function initializeRouter() {
+
+    currentRoute = window.location.hash || "#/";
+
+    if (!findRoute(currentRoute)) {
+
+        currentRoute = "#/";
+        window.location.hash = "#/";
+
+    }
+
+    renderCurrentPage();
+
+    notifyRouteListeners();
+
+    window.addEventListener(
+
+        "hashchange",
+
+        () => {
+
+            updateRoute(
+
+                window.location.hash || "#/"
+
+            );
+
+        }
+
+    );
+
+}
+
+
+
+
+
+/*
+=========================================================
+Authentication Guard
+=========================================================
+*/
+
+export function requireAuthentication(
+
+    isAuthenticated,
+    redirectPath = "#/login"
+
+) {
+
+    if (!isProtectedRoute(currentRoute)) {
+
+        return true;
+
+    }
+
+    if (isAuthenticated) {
+
+        return true;
+
+    }
+
+    navigate(redirectPath);
+
+    return false;
+
+}
+
+
+
+
+
+/*
+=========================================================
+Route Rendering Helper
+=========================================================
+*/
+
+export function renderRoute(callback) {
+
+    if (typeof callback === "function") {
+
+        onRouteChange(callback);
+
+        callback(currentRoute);
+
+    }
+
+}
+
+
+
+
